@@ -1,0 +1,110 @@
+/* 고딕체 타이틀 */
+.font-display {
+	font-family: var(--font-serif);
+	font-weight: var(--font-weight-regular);
+	font-size: 48px;
+	font-style: normal;
+	line-height: 72px;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.font-bold {
+		font-weight: var(--font-weight-semibold);
+	}
+}
+
+/* 고딕체 부제1 : 페이지 제목 등에 활용 */
+.font-h1 {
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-thin);
+	font-size: 40px;
+	line-height: 52px;
+	font-style: normal;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.font-bold {
+		font-weight: var(--font-weight-extrabold);
+	}
+}
+
+/* 고딕체 부제2 : 섹션 이름 등에 활용 */
+.font-h2 {
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-thin);
+	font-size: 32px;
+	line-height: 42px;
+	font-style: normal;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.font-bold {
+		font-weight: var(--font-weight-extrabold);
+	}
+}
+
+.font-h3 {
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-thin);
+	font-size: 24px;
+	line-height: 34px;
+	font-style: normal;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.font-bold {
+		font-weight: var(--font-weight-extrabold);
+	}
+}
+
+.font-title {
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-regular);
+	font-size: 20px;
+	line-height: 28px;
+	font-style: normal;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.font-bold {
+		font-weight: var(--font-weight-semibold);
+	}
+}
+
+.font-body {
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-regular);
+	font-size: 16px;
+	line-height: 24px;
+	font-style: normal;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.font-bold {
+		font-weight: var(--font-weight-semibold);
+	}
+}
+
+.font-caption {
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-regular);
+	font-size: 14px;
+	line-height: 20px;
+	font-style: normal;
+	color: var(--color-font-main);
+	margin: 0;
+
+	&.bold {
+		font-weight: var(--font-weight-semibold);
+	}
+}
+
+
+/* ------------------ google icon ------------------  */
+
+.google-icon {
+	font-family: var(--font-system);
+	padding: 0;
+}
+
+

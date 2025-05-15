@@ -1,0 +1,71 @@
+
+
+/* ------------------ 버튼 ------------------  */
+
+
+button.normal-btn {
+	text-align: center;
+	height: var(--height-normal);
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+
+button.inline-btn {
+	display: inline-block;
+	width: auto;
+}
+
+button.aria-btn {
+	outline: none;
+	border: none;
+	background-color: inherit;
+	box-shadow: none;
+}
+
+button.small-btn {
+	outline: none;
+	border: none;
+	background-color: inherit;
+	padding: 0;
+	margin: 0;
+	width: auto;
+	display: inline-block;
+	box-shadow: none;
+	transition: 0.2s all;
+}
+
+button.text-btn {
+	outline: none;
+	border: none;
+	background-color: inherit;
+	padding: 0;
+	margin: 0;
+	width: auto;
+	display: inline-block;
+	box-shadow: none;
+	transition: 0.2s all;
+}
+
+
+tbody tr td button.table-btn {
+	display: inline-block;
+	background-color: var(--color-system500);
+	border: none;
+	box-shadow: none;
+	padding: 2px 6px;
+	margin: 0;
+	text-align: left;
+	width: auto;
+	border-radius: var(--radius-small);
+}
+
+
+/* ------------------ text area ------------------  */
+
+.long-text-area {
+	width: 100%;
+	padding: var(--padding-normal);
+	border-radius: var(--radius-normal);
+	border: 1px solid var(--color-line-normal);
+}

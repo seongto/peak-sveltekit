@@ -1,0 +1,44 @@
+/* ------------------ 테이블 관련 ------------------  */
+
+table tbody tr td {
+	padding-right: 40px;
+	min-width: 150px;
+} 
+
+table tbody tr td:last-child {
+	min-width: 60px;
+	padding-right: 20px;
+} 
+
+table thead tr th {
+	font-weight: var(--font-weight-semibold);
+}
+
+table thead tr th.min-160 {
+	min-width: 160px;
+}
+
+table thead tr th.min-200 {
+	min-width: 200px;
+}
+
+table thead tr th.min-240 {
+	min-width: 240px;
+}
+
+table tbody tr.no-item td {
+	padding-right: 40px;
+	min-width: 160px;
+} 
+
+figure {
+    overflow-x: scroll;
+}
+
+
+/* ------------------ ul 관련 ------------------  */
+
+
+ul li {
+    list-style-type: none;
+}

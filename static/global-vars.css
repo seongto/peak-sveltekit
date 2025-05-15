@@ -1,0 +1,74 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400..600&display=swap');
+
+:where(:root),
+:root {
+	/* Colors: */
+    --color-main: #B29C67;
+	--color-sub1: #DAD3C8;
+	--color-sub2: #1E90FF;
+
+	--color-system900: #283237;
+	--color-system700: #495A63;
+	--color-system500: #667C89;
+	--color-system300: #94A4AD;
+	--color-system100: #D1D8DC;
+	--color-system50: #EDEFF1;
+
+	--color-bg1: #FFFFFF;
+	--color-bg2: #F7F7FB;
+	--color-bg3: #F1F1F5;
+
+	--color-line-normal: #E5E5EC;
+	--color-line-light: #F1F1F5;
+	--color-line-dark: #111111;
+
+	--color-font-main: #111111;
+	--color-font-sub1: #505050;
+	--color-font-sub2: #767676;
+	--color-font-sub3: #999999;
+	--color-font-white: #ffffff;
+
+	--color-status-red: #DC0000;
+	--color-status-yellow: #04B014;
+	--color-status-green: #FFAA00;
+
+    --color-black: #000000;
+    --color-white: #ffffff;
+
+	/* Font/text values */
+	--font-serif: "Libre Bodoni", sans-serif;
+	--font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	--font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	--font-system: -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+	--font-weight-thin: 200;
+	--font-weight-regular: 400;
+	--font-weight-semibold: 600;
+	--font-weight-extrabold: 800;
+
+	/* Layouts */
+	--radius-small: 4px;
+    --radius-normal: 8px;
+	--radius-large: 16px;
+	--border-simple: 1px solid var(--color-line-dark);
+
+	--padding-small: 16px;
+	--padding-normal: 24px;
+	--padding-large: 32px;
+
+	--height-normal: 48px;
+	--content-width: 980px;
+}
+
+
+/* pico style customization */
+
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --primary: #1E90FF;
+  --primary-hover: var(--color-system50);
+  --primary-focus: var(--color-system900);
+  --primary-inverse: var(--color-system500)
+}
+
