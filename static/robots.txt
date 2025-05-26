@@ -2,4 +2,4 @@
 User-agent: *
 Disallow: /private/
 Allow: /
-Sitemap: https://p-connect.vercel.app/sitemap.xml
+Sitemap: https://peak-connect.vercel.app/sitemap.xml
