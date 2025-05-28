@@ -3,7 +3,7 @@ import '@sveltejs/kit';
 declare global {
 	namespace App {
 		interface Locals {
-			companyId?: string | null;
+			companyUuid?: string | null;
 		}
 		// interface Error {}
 		// interface PageData {}
@@ -14,7 +14,7 @@ declare global {
 
 declare module '@sveltejs/kit' {
 	interface Locals {
-	    companyId?: string | null;
+	    companyUuid?: string | null;
 	}
 }
 

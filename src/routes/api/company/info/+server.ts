@@ -1,5 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
+import { selectCompany } from '$lib/supabase/company/companyRepository';
+
 
 let dummyData = {
 	"name": "더선한 스튜디오",
@@ -7,9 +9,18 @@ let dummyData = {
 }
 
 // 회사 정보 조회
-export const GET: RequestHandler = async ({request }) => {
+export const GET: RequestHandler = async ({request, locals }) => {
 	try {
-		return successResponse(dummyData);
+
+		let companyUuid = locals.companyUuid;
+
+		if (!companyUuid) {
+			return errorResponse("회사의 uuid 정보가 필요합니다.", 401);
+		}
+
+		let result = await selectCompany(companyUuid);
+
+		return successResponse(result);
 	} catch (error) {
 		console.log("error : ", error)
 		return serverErrorResponse();

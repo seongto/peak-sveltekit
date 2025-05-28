@@ -1,6 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
 import { validateRequiredFields } from '$lib/utils/validators';
+import { insertCompany } from '$lib/supabase/company/companyRepository';
 
 let dummyData = {
 	"uuid": "12345678-1234-1234-1234-123456789012"
@@ -33,7 +34,9 @@ export const POST: RequestHandler = async ({request }) => {
 			return errorResponse("요청 데이터가 올바르지 않습니다. name, description은 모두 문자열이며 빈 값일 수 없습니다.");
 		}
 
-		return successResponse(dummyData);
+		let newCompanyUuid = await insertCompany({ name, description });
+
+		return successResponse(newCompanyUuid);
 	} catch (error) {
 		console.log("error : ", error)
 		return serverErrorResponse();

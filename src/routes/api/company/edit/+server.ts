@@ -1,11 +1,11 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
 import { validateRequiredFields } from '$lib/utils/validators';
+import { updateCompany } from '$lib/supabase/company/companyRepository';
 
-let dummyData = null
 
 // 회사 정보 수정
-export const POST: RequestHandler = async ({request }) => {
+export const POST: RequestHandler = async ({request, locals }) => {
 	let body: any;
 
 	try {
@@ -32,8 +32,19 @@ export const POST: RequestHandler = async ({request }) => {
 			return errorResponse("요청 데이터가 올바르지 않습니다. name, description은 모두 문자열이며 빈 값일 수 없습니다.");
 		}
 
+		let companyUuid = locals.companyUuid;
 
-		return successResponse(dummyData, "회사 정보가 수정되었습니다.");
+		if (!companyUuid) {
+			return errorResponse("회사의 uuid 정보가 필요합니다.", 401);
+		}
+
+		let result = await updateCompany(companyUuid, name, description);
+
+		if (result) {
+			return successResponse(null, "회사 정보가 수정되었습니다.");
+		} else {
+			return serverErrorResponse();
+		}
 	} catch (error) {
 		console.log("error : ", error)
 		return serverErrorResponse();
