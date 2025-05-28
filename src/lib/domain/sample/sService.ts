@@ -1,1 +1,0 @@
-export let sample2 = "222"

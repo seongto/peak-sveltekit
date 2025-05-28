@@ -4,8 +4,8 @@
 :where(:root),
 :root {
 	/* Colors: */
-    --color-main: #B29C67;
-	--color-sub1: #DAD3C8;
+    --color-main: #6A31F6;
+	--color-sub1: #976DFD;
 	--color-sub2: #1E90FF;
 
 	--color-system900: #283237;
@@ -66,7 +66,7 @@
 
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
-  --primary: #1E90FF;
+  --primary: #6A31F6;
   --primary-hover: var(--color-system50);
   --primary-focus: var(--color-system900);
   --primary-inverse: var(--color-system500)

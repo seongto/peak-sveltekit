@@ -15,22 +15,21 @@ export const POST: RequestHandler = async ({request }) => {
 	}
 
 	try {
-		const keyValidator = ['name', 'industry', 'description'];
+		const keyValidator = ['name', 'description'];
 		const validationError = validateRequiredFields(body, keyValidator);
 
 		if (validationError) {
 			return errorResponse(validationError);
 		}
 
-		const { name, industry, description } = body;
+		const { name, description } = body;
 
 
 		if (
 			typeof name !== 'string' || name.trim() === '' ||
-			typeof industry !== 'string' || industry.trim() === '' ||
 			typeof description !== 'string' || description.trim() === ''
 		) {
-			return errorResponse("요청 데이터가 올바르지 않습니다. name, industry, description은 모두 문자열이며 빈 값일 수 없습니다.");
+			return errorResponse("요청 데이터가 올바르지 않습니다. name, description은 모두 문자열이며 빈 값일 수 없습니다.");
 		}
 
 
