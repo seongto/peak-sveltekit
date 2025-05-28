@@ -1,16 +1,16 @@
 <script lang="ts">
-    import { supabase } from '$lib/domain/supabaseClient';
+    import { supabase } from '$lib/supabase/supabaseClient';
 
     const loginWithGoogle = async () => {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: 'http://localhost:3027/auth/callback'
-        }
-      });
+		const { data, error } = await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: {
+				redirectTo: 'http://localhost:3027/auth/callback'
+			}
+		});
   
-      if (error) console.error(error);
+    	if (error) console.error(error);
     };
-  </script>
+</script>
   
-  <button on:click={loginWithGoogle} class="font-body">구글 로그인</button>
+<button on:click={loginWithGoogle} class="font-body">구글 로그인</button>
