@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
-import { selectCompany } from '$lib/supabase/company/companyRepository';
+import { selectCompany } from '$lib/supabase/company/company-repository';
 
 
 let dummyData = {

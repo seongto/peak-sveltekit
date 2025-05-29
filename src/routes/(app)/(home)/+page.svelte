@@ -1,10 +1,8 @@
 <script lang="ts">
-import type { Location } from '$lib/interfaces/locationInterface';
+import type { Location } from '$lib/interfaces/location-interfaces';
     
-
-    let name = "모두의 AI";
-    let description = "ai 산업에 대한 연구와 관련 아이템 컨설팅을 제공합니다. 기업들이 사업에 ai를 활용하여 생산성을 늘리고 이익을 극대화할 수 있도록 돕습니다.";
-    let industry = "IT, AI, 인공지능";
+    let name = "모두의 책방";
+    let description = "누구나 쉽게 자신만의 책방을 만들어 운영할 수 있는 플랫폼입니다. ai를 활용하여 책방을 운영하는 사람들에게 도움을 드리고자 합니다.";
     
     const locations: Array<Location> = [
         {
@@ -26,7 +24,10 @@ import type { Location } from '$lib/interfaces/locationInterface';
 
     let selectedLocation: Location = locations[0];
 
+    let isLoading = false;
+
     const requestLeadRecommendation = async () => {
+        isLoading = true;
         const response = await fetch('/webapp/recommend', {
             method: 'POST',
             headers: {
@@ -35,13 +36,13 @@ import type { Location } from '$lib/interfaces/locationInterface';
             body: JSON.stringify({
                 name,
                 description,
-                industry,
                 latitude: selectedLocation.latitude,
                 longitude: selectedLocation.longitude
             })
         });
 
         const data = await response.json();
+        isLoading = false;
 
         console.log(data);
     }
@@ -55,9 +56,6 @@ import type { Location } from '$lib/interfaces/locationInterface';
     
     <p class="font-body">회사 설명 입력</p>
     <textarea bind:value={description} placeholder="회사 설명을 입력해주세요. 제공하는 서비스나 관련 분야 등을 자유롭게 입력해주세요. 입력하신 정보를 기반으로 리드를 추천해드립니다." ></textarea>
-    
-    <p class="font-body">산업군 입력</p>
-    <input type="text" bind:value={industry} placeholder="산업군을 입력해주세요. 복수 응답 시 쉼표로 구분." />
 
     <p class="font-body">지역 선택</p>
     <select name="location-selector font-body" aria-label="Select your location" bind:value={selectedLocation}>
@@ -66,7 +64,11 @@ import type { Location } from '$lib/interfaces/locationInterface';
         {/each}
     </select>
 
-    <button class="font-title confirm-btn" on:click={requestLeadRecommendation}>리드 추천</button>
+    {#if !isLoading}
+        <button class="font-title confirm-btn" on:click={requestLeadRecommendation}>리드 추천</button>
+    {:else}
+        <button class="font-title confirm-btn" disabled>리드 추천 중...</button>
+    {/if}
 </div>
 
 

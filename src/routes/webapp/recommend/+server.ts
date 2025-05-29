@@ -1,8 +1,8 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
 import { validateRequiredFields } from '$lib/utils/validators';
-import { recommendLead } from '$lib/openAI/recommendLead';
-import type { NewRecommendationResource } from '$lib/interfaces/companyInterface';
+import { recommendLead } from '$lib/openAI/recommend-lead';
+import type { NewRecommendationResource } from '$lib/interfaces/company-interfaces';
 
 
 // 새로운 리드 추천
@@ -41,9 +41,9 @@ export const POST: RequestHandler = async ({request }) => {
 			longitude: longitude
 		}
 
-		let result = await recommendLead(data);
+		let recommendationResult = await recommendLead(data);
 
-		return successResponse(result);
+		return successResponse(recommendationResult);
 	} catch (error) {
 		console.log("error : ", error)
 		return serverErrorResponse();

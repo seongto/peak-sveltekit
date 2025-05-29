@@ -5,7 +5,7 @@ export interface NewRecommendationResource {
     longitude: Number
 }
 
-export interface NewCompany {
+export interface CompanyInfo {
     name: string;
     description: string;
 };

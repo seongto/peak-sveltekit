@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { supabase } from '$lib/supabase/supabaseClient';
+    import { supabase } from '$lib/supabase/supabase-client';
 
     const loginWithGoogle = async () => {
 		const { data, error } = await supabase.auth.signInWithOAuth({

@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
 import { validateRequiredFields } from '$lib/utils/validators';
-import { updateCompany } from '$lib/supabase/company/companyRepository';
+import { updateCompany } from '$lib/supabase/company/company-repository';
 
 
 // 회사 정보 수정

@@ -1,25 +1,33 @@
 import { createClient } from '@supabase/supabase-js';
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
-import type { NewCompany } from '$lib/interfaces/companyInterface';
+import type { NewLead } from '$lib/interfaces/lead-interfaces';
+import type { NewRecommendation } from '$lib/interfaces/recommendation-interfaces';
 
 
 const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
-export async function insertCompany(company: NewCompany) {
-    const { data, error } = await supabase
-        .from('companies')
-        .insert([company])
-        .select()
-        .single();
+export async function insertRecommendation(recommendation: NewRecommendation, companyId: number, leads: Array<NewLead>) {
+    const { data, error } = await supabase.rpc('insert_recommendation_with_leads_v2', {
+        _location: recommendation.location,
+        _latitude: recommendation.latitude,
+        _longitude: recommendation.longitude,
+        _company_id: companyId,
+        _leads: leads
+    });
+    
+    if (error) {
+        console.error('RPC insert failed:', error.message);
+        throw error;
+    }
 
-    let result = { "uuid": data.uuid };
+    console.log("=========== Insert Result ===========")
+    console.log(data);
 
-    if (error) throw new Error(error.message);
-    return result;
+    return data;
 }
 
 
-export async function updateCompany(uuid: string, name: string, description: string) {
+export async function updateLead(uuid: string, name: string, description: string) {
     const { data, error } = await supabase
         .from('companies')
         .update({ name, description })
@@ -40,7 +48,7 @@ export async function updateCompany(uuid: string, name: string, description: str
 }
     
 
-export async function selectCompany(uuid: string) {
+export async function selectLead(uuid: string) {
     const { data, error } = await supabase
         .from('companies')
         .select("name, description")
