@@ -14,14 +14,14 @@ let dummyData = {
 			"latitude": 37.4973,
 		  "longitude": 127.0270
 		},{
-			"id": 2,
+			"id": 1,
 			"name": "Lead 2",
 			"address": "lead address2",
 			"industry": "산업군1, 산업군2",
 			"latitude": 37.4982,
 		  "longitude": 127.0268
 		},{
-			"id": 3,
+			"id": 1,
 			"name": "Lead 3",
 			"address": "lead address3",
 			"industry": "산업군1, 산업군2",
