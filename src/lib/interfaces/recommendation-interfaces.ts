@@ -12,3 +12,11 @@ export interface RecommendationListItem {
     count: number,
     createdAt: Date,
 }
+
+export interface HistoryItem {
+    id: number,
+    location: string,
+    leads: string,
+    count: number,
+    createdAt: Date,
+}

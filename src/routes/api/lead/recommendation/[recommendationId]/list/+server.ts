@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
-import { selectRecommendations } from '$lib/supabase/recommendation/recommendation-repository';
+import { selectRecommendationLeads } from '$lib/supabase/recommendation/recommendation-repository';
 import { selectCompanyAll } from '$lib/supabase/company/company-repository';
 
 
@@ -23,7 +23,7 @@ export const GET: RequestHandler = async ({request, locals, params }) => {
 			return serverErrorResponse();
 		}
 
-		let recommendationData = await selectRecommendations(recommendationId, companyData.id);
+		let recommendationData = await selectRecommendationLeads(recommendationId, companyData.id);
 
 		return successResponse(recommendationData);
 	} catch (error) {

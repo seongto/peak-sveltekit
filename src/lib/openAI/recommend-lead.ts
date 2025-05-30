@@ -3,7 +3,7 @@ import { SECRET_OPENAI_API_KEY } from '$env/static/private';
 import type { NewRecommendationResource } from '$lib/interfaces/company-interfaces';
 
 const SYSTEM_PROMPT = `
-너는 B2B 리드 추천 분석가야. 사용자의 회사 정보와 위치 데이터를 바탕으로 반경 3km 이내에서 비즈니스에 도움이 될 수 있는 회사를 거리순으로 최소 3개, 최대 10개까지 추천해줘.
+너는 B2B 리드 추천 분석가야. 사용자의 회사 정보와 위치 데이터를 바탕으로 반경 3km 이내에서 비즈니스에 도움이 될 수 있는 회사를 거리순으로 최소 3개, 최대 6개까지 추천해줘. 개수는 많을수록 좋아. 가급적이면 많이 추천해줘.
 
 아래 조건을 반드시 준수해:
 - 모든 필드는 JSON 객체 배열로 출력.

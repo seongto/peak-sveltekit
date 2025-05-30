@@ -16,14 +16,36 @@ export async function insertRecommendation(recommendation: NewRecommendation, co
     });
     
     if (error) {
-        console.error('RPC insert failed:', error.message);
+        console.error('insertRecommendation error:', error.message);
         throw error;
     }
 
     return data;
 }
 
-export async function selectRecommendations(recommendationId: number, companyId: number) {
+export async function selectRecommendations(companyId: number) {
+    const { data, error } = await supabase
+        .from('recommendations')
+        .select(`
+            id,
+            location,
+            created_at,
+            leads (
+                name
+            ) 
+        `)
+        .eq('company_id', companyId)
+
+    if (error) {
+        console.error('selectRecommendations error:', error.message);
+        throw new Error(error.message);
+    }
+
+    return data;
+}
+
+
+export async function selectRecommendationLeads(recommendationId: number, companyId: number) {
     const { data, error } = await supabase
         .from('recommendations')
         .select(`
@@ -41,7 +63,7 @@ export async function selectRecommendations(recommendationId: number, companyId:
         .eq('id', recommendationId)
 
     if (error) {
-        console.error('selectRecommendations error:', error.message);
+        console.error('selectRecommendationLeads error:', error.message);
         throw new Error(error.message);
     }
 
