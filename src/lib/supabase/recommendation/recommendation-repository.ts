@@ -61,6 +61,7 @@ export async function selectRecommendationLeads(recommendationId: number, compan
         `)
         .eq('company_id', companyId)
         .eq('id', recommendationId)
+        .single();
 
     if (error) {
         console.error('selectRecommendationLeads error:', error.message);
