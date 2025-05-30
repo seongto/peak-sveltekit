@@ -7,7 +7,6 @@ import { selectCompanyAll } from '$lib/supabase/company/company-repository';
 import { insertRecommendation } from '$lib/supabase/recommendation/recommendation-repository';
 import type { NewRecommendationResource } from '$lib/interfaces/company-interfaces';
 import type { NewRecommendation } from '$lib/interfaces/recommendation-interfaces';
-import type { NewLead } from '$lib/interfaces/lead-interfaces';
 
 
 // 새로운 리드 추천
@@ -58,6 +57,10 @@ export const POST: RequestHandler = async ({request, locals }) => {
 		}
 		
 		let recommendationResult = await recommendLead(recommendationData);
+
+		if (!recommendationResult) {
+			return serverErrorResponse();
+		}
 
 		let newRecommend: NewRecommendation = {
 			location: location,

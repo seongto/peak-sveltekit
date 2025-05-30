@@ -97,9 +97,6 @@ export const recommendLead = async (companyInfo: NewRecommendationResource) => {
         const cleanContent = content.replace(/```json\n?/, '').replace(/```$/, '').trim();
         const leads = JSON.parse(cleanContent);
 
-        console.log("=========== openAI Result ===========")
-        console.log(leads)
-
         return leads;
     } catch (error) {
         console.log("error : ", error)

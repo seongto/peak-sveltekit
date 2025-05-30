@@ -20,43 +20,28 @@ export async function insertRecommendation(recommendation: NewRecommendation, co
         throw error;
     }
 
-    console.log("=========== Insert Result ===========")
-    console.log(data);
-
     return data;
 }
 
-
-export async function updateLead(uuid: string, name: string, description: string) {
+export async function selectRecommendations(recommendationId: number, companyId: number) {
     const { data, error } = await supabase
-        .from('companies')
-        .update({ name, description })
-        .eq('uuid', uuid)
-        .select()
-        .single();
+        .from('recommendations')
+        .select(`
+            location,
+            leads (
+                id,
+                name,
+                address,
+                industry,
+                latitude,
+                longitude
+            ) 
+        `)
+        .eq('company_id', companyId)
+        .eq('id', recommendationId)
 
     if (error) {
-        console.error('updateCompany error:', error.message);
-        throw new Error(error.message);
-    }
-
-    if ((data.uuid === uuid) && (data.name === name) && (data.description === description)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-    
-
-export async function selectLead(uuid: string) {
-    const { data, error } = await supabase
-        .from('companies')
-        .select("name, description")
-        .eq('uuid', uuid)
-        .single();
-
-    if (error) {
-        console.error('selectCompany error:', error.message);
+        console.error('selectRecommendations error:', error.message);
         throw new Error(error.message);
     }
 
