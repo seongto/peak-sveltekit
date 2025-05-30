@@ -69,3 +69,19 @@ export async function selectRecommendationLeads(recommendationId: number, compan
 
     return data;
 }
+
+
+export async function selectRecommendationOwner(recommendationId: number) {
+    const { data, error } = await supabase
+        .from('recommendations')
+        .select('company_id')
+        .eq('id', recommendationId)
+        .single();
+
+    if (error) {
+        console.error('selectRecommendationOwner error:', error.message);
+        throw new Error(error.message);
+    }
+
+    return data.company_id;
+}

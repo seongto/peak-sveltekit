@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { successResponse, errorResponse, serverErrorResponse } from '$lib/utils/response';
-import { selectRecommendationLeads } from '$lib/supabase/recommendation/recommendation-repository';
+import { selectRecommendationLeads, selectRecommendationOwner } from '$lib/supabase/recommendation/recommendation-repository';
 import { selectCompanyAll } from '$lib/supabase/company/company-repository';
 
 
@@ -21,6 +21,12 @@ export const GET: RequestHandler = async ({request, locals, params }) => {
 
 		if (!companyData.id) {
 			return serverErrorResponse();
+		}
+		
+		let recommendationOwnerId = await selectRecommendationOwner(recommendationId);
+		
+		if (recommendationOwnerId !== companyData.id) {
+			return errorResponse("해당 추천의 소유자가 아닙니다.", 403);
 		}
 
 		let recommendationData = await selectRecommendationLeads(recommendationId, companyData.id);
