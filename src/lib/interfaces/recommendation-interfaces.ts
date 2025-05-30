@@ -18,5 +18,5 @@ export interface HistoryItem {
     location: string,
     leads: string,
     count: number,
-    createdAt: Date,
+    created_at: Date,
 }

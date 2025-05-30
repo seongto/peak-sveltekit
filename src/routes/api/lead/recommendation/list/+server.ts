@@ -58,7 +58,7 @@ export const GET: RequestHandler = async ({request, locals }) => {
 				location: recommendation.location,
 				leads: leadsSum,
 				count: recommendation.leads.length,
-				createdAt: recommendation.created_at
+				created_at: recommendation.created_at
 			}
 			histories.push(history);
 		}
