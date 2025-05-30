@@ -18,6 +18,7 @@ export async function selectLeadDetails(leadId: number) {
             industry
         `)
         .eq('id', leadId)
+        .single();
 
     if (error) {
         console.error('selectLeadDetails error:', error.message);
