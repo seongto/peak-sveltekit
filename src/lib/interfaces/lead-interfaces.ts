@@ -1,7 +1,7 @@
 export interface NewLead {
     name: string,
     website: string,
-    year_founded: string,
+    year_founded: number,
     summary: string,
     address: string,
     latitude: number,
@@ -9,7 +9,6 @@ export interface NewLead {
     ceo_name: string,
     match_reason: string,
     industry: string,
-    distance: number
 }
 
 export interface LeadListItem {
@@ -20,4 +19,3 @@ export interface LeadListItem {
     latitude: number,
     longitude: number
 }
-    

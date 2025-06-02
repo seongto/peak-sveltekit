@@ -1,8 +1,10 @@
 <script lang="ts">
-import type { Location } from '$lib/interfaces/location-interfaces';
+    import type { Location } from '$lib/interfaces/location-interfaces';
+    import type { NewLead } from '$lib/interfaces/lead-interfaces';
+
     
-    let name = "모두의 책방";
-    let description = "누구나 쉽게 자신만의 책방을 만들어 운영할 수 있는 플랫폼입니다. ai를 활용하여 책방을 운영하는 사람들에게 도움을 드리고자 합니다.";
+    let name = $state("");
+    let description = $state("");
     
     const locations: Array<Location> = [
         {
@@ -19,15 +21,23 @@ import type { Location } from '$lib/interfaces/location-interfaces';
             name: "을지로입구역",
             latitude: 37.566014,
             longitude: 126.982617
+        },
+        {
+            name: "홍대입구역",
+            latitude: 37.556944,
+            longitude: 126.923917
         }
     ];
 
-    let selectedLocation: Location = locations[0];
+    let selectedLocation: Location = $state(locations[0]);
 
-    let isLoading = false;
+    let isLoading = $state(false);
+    let leads: Array<NewLead> = $state([]);
 
     const requestLeadRecommendation = async () => {
         isLoading = true;
+        leads = [];
+
         const response = await fetch('/webapp/recommend', {
             method: 'POST',
             headers: {
@@ -41,10 +51,10 @@ import type { Location } from '$lib/interfaces/location-interfaces';
             })
         });
 
-        const data = await response.json();
+        const result = await response.json();
         isLoading = false;
 
-        console.log(data);
+        leads = result.data.leads;
     }
 </script>
 
@@ -55,7 +65,7 @@ import type { Location } from '$lib/interfaces/location-interfaces';
     <input type="text" bind:value={name} />
     
     <p class="font-body">회사 설명 입력</p>
-    <textarea bind:value={description} placeholder="회사 설명을 입력해주세요. 제공하는 서비스나 관련 분야 등을 자유롭게 입력해주세요. 입력하신 정보를 기반으로 리드를 추천해드립니다." ></textarea>
+    <textarea bind:value={description} placeholder="회사 설명을 입력해주세요. 제공하는 서비스나 관련 분야 등을 자유롭게 입력해주세요. 비즈니스에 필요한 협업포인트도 좋습니다. 입력하신 정보를 기반으로 리드를 추천해드립니다." ></textarea>
 
     <p class="font-body">지역 선택</p>
     <select name="location-selector font-body" aria-label="Select your location" bind:value={selectedLocation}>
@@ -65,10 +75,31 @@ import type { Location } from '$lib/interfaces/location-interfaces';
     </select>
 
     {#if !isLoading}
-        <button class="font-title confirm-btn" on:click={requestLeadRecommendation}>리드 추천</button>
+        <button class="font-title confirm-btn" onclick={requestLeadRecommendation}>리드 추천</button>
     {:else}
         <button class="font-title confirm-btn" disabled>리드 추천 중...</button>
     {/if}
+
+    <ul class="leads">
+        {#each leads as item (item)}
+            <li>
+                <h3 class="font-h3 font-bold name">{item.name}</h3>
+                <p class="font-body summary">{item.summary}</p>
+                <p class="font-body item-label font-bold">CEO</p>
+                <p class="font-body item-value">{item.ceo_name}</p>
+                <p class="font-body item-label font-bold">산업군</p>
+                <p class="font-body item-value">{item.industry}</p>
+                <p class="font-body item-label font-bold">설립 연도</p>
+                <p class="font-body item-value">{item.year_founded}</p>
+                <p class="font-body item-label font-bold">주소</p>
+                <p class="font-body item-value">{item.address}</p>
+                <p class="font-body item-label font-bold">웹사이트</p>
+                <a href={item.website} target="_blank" class="font-body item-value">{item.website}</a>
+                <p class="font-body item-label font-bold">추천 이유</p>
+                <p class="font-body item-value">{item.match_reason}</p>
+            </li>
+        {/each}
+    </ul>
 </div>
 
 
@@ -114,13 +145,10 @@ import type { Location } from '$lib/interfaces/location-interfaces';
         height: 300px;
     }
 
-    .location-btn {
-        background-color: var(--color-main);
-        color: white;
+    select {
+        background-color: #3b3b3b;
         border: none;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 32px;
+        color: white;
     }
 
     .confirm-btn {
@@ -129,6 +157,43 @@ import type { Location } from '$lib/interfaces/location-interfaces';
         border: none;
         cursor: pointer;
         width: 100%;
-        margin-top: 32px;
+        margin: 32px 0 60px;
+    }
+
+    .leads {
+
+        & li {
+            padding: 20px;
+            background-color: #272727;
+            border-radius: 8px;
+            margin-bottom: 20px;
+
+            .name {
+                color: white;
+                margin-bottom: 20px;
+            }
+
+            .summary {
+                color: #bbbbbb;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #6e6e6e;
+            }
+
+            .item-label {
+                color: var(--color-sub1);
+                margin-bottom: 4px;
+            }
+
+            .item-value {
+                color: #bbbbbb;
+                margin-bottom: 20px;
+            }
+
+            a {
+                color: white;
+                display: block;
+            }
+        }
     }
 </style>
